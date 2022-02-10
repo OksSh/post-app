@@ -16,6 +16,10 @@
   padding: 58px 0 71px 0;
 }
 
+.activeNavBar {
+  top: 0;
+}
+
 .navBar_content {
   display: flex;
 }

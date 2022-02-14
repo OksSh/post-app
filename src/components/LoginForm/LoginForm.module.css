@@ -1,3 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1105px;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+}
+
 .titleForm {
   display: flex;
   flex-direction: column;
@@ -23,4 +36,9 @@
   color: #016efc;
   text-decoration: none;
   margin-left: 8px;
+}
+
+.titleForm_image {
+  margin-top: 92px;
+  margin-left: 3px;
 }

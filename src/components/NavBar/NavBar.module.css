@@ -36,6 +36,7 @@
 .navBar_link_style {
   text-decoration: none;
   cursor: pointer;
+  color: #ffffff;
 }
 
 .activeLink {

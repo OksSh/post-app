@@ -11,7 +11,17 @@
   width: 100%;
 }
 
-.allPost {
+.allPost_title {
+  margin-bottom: 63px;
+  display: flex;
+  align-items: center;
+}
+
+.allPost_addButton {
+  margin-left: 24px;
+}
+
+.allPost_posts {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

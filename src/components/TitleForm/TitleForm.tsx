@@ -1,7 +1,13 @@
 import styles from '../TitleForm/TitleForm.module.css';
 import { NavLink } from 'react-router-dom';
+import { Context } from '../../App';
+import { useContext } from 'react';
 
 export const TitleForm = () => {
+  const { darkTheme } = useContext(Context);
+  const { lightTheme } = useContext(Context);
+  const { isDark } = useContext(Context);
+
   return (
     <div className={styles.titleForm}>
       <div>

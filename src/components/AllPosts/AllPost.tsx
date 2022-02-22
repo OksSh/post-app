@@ -7,36 +7,41 @@ import { Title } from '../Title/Title';
 import { AddButton } from '../AddButton/AddButton';
 import { Context } from '../../App';
 import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IState } from '../../redux/store';
+import { addAllPosts, getPosts } from '../../redux/actions/actions';
 
 export const AllPost = () => {
-  const [posts, setPosts] = useState<IPostProps[]>([]);
   const [offset, setOffset] = useState<number>(0);
-  const [allPosts, setAllPosts] = useState<IPostProps[]>([]);
   const { darkTheme } = useContext(Context);
   const { lightTheme } = useContext(Context);
   const { isDark } = useContext(Context);
-
+  const posts = useSelector((state: IState) => state.reducerPosts.posts);
+  const allPosts = useSelector(
+    (state: IState) => state.reducerAllPosts.allPosts
+  );
+  const dispatch = useDispatch();
   const LIMIT = 6;
 
   useEffect(() => {
-    const getPosts = fetch(
+    const getAllPosts = fetch(
       `https://studapi.teachmeskills.by/blog/posts/?format=json&limit=${Number.MAX_SAFE_INTEGER}`
     )
       .then((response) => response.json())
-      .then((data) => setAllPosts(data.results));
+      .then((data) => dispatch(getPosts(data.results)));
   }, []);
 
   useEffect(() => {
-    const getPosts = fetch(
+    const getAllPosts = fetch(
       `https://studapi.teachmeskills.by/blog/posts/?format=json&limit=${LIMIT}&offset=${offset}`
     )
       .then((response) => response.json())
-      .then((data) => setPosts([...posts, ...data.results]));
+      .then((data) => dispatch(addAllPosts(data.results)));
   }, [offset]);
 
   const loadMore = useCallback(() => {
-    setOffset(posts.length);
-  }, [posts]);
+    setOffset(allPosts.length);
+  }, [allPosts]);
 
   return (
     <div style={isDark ? darkTheme : lightTheme}>
@@ -49,7 +54,7 @@ export const AllPost = () => {
             </div>
           </div>
           <div className={styles.allPost_posts}>
-            {posts.map((item: IPostProps) => {
+            {allPosts.map((item: IPostProps) => {
               return (
                 <PostCard
                   image={item.image}
@@ -63,7 +68,7 @@ export const AllPost = () => {
             })}
           </div>
         </div>
-        {posts.length < allPosts.length ? (
+        {allPosts.length < posts.length ? (
           <Button text={'Show more'} onClick={loadMore} />
         ) : null}
       </div>

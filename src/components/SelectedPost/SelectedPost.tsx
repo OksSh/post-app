@@ -28,7 +28,7 @@ export const SelectedPost = () => {
   }, []);
 
   return cardInfo ? (
-    <div style={!isDark ? darkTheme : lightTheme}>
+    <div style={isDark ? darkTheme : lightTheme}>
       <div className={styles.container}>
         <div className={styles.selectedPost_title}>
           <Title title='Selected post' />
@@ -42,7 +42,7 @@ export const SelectedPost = () => {
           </div>
         </div>
         <div
-          style={!isDark ? lightTheme : lightTheme}
+          style={isDark ? lightTheme : lightTheme}
           className={styles.selectedPost}
         >
           <img

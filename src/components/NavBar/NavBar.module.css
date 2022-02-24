@@ -16,6 +16,11 @@
   padding: 58px 0 71px 0;
 }
 
+.navBar_dark {
+  background-color: #ffffff;
+  padding: 58px 0 71px 0;
+}
+
 .activeNavBar {
   top: 0;
 }
@@ -37,6 +42,12 @@
   text-decoration: none;
   cursor: pointer;
   color: #ffffff;
+}
+
+.navBar_link_darkStyle {
+  text-decoration: none;
+  cursor: pointer;
+  color: #016efc;
 }
 
 .activeLink {

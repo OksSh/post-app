@@ -22,6 +22,16 @@
   text-decoration: none;
 }
 
+.titleForm_item_dark {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 45px;
+  line-height: 145.2%;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .activeLink {
   color: #75869b;
   cursor: default;

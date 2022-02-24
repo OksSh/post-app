@@ -7,13 +7,11 @@ interface ITitleProps {
 }
 
 export const Title = ({ title }: ITitleProps) => {
-  const { darkTheme } = useContext(Context);
-  const { lightTheme } = useContext(Context);
-  const { isDark } = useContext(Context);
+  const { theme } = useContext(Context);
 
   return (
     <>
-      <p style={isDark ? darkTheme : lightTheme} className={styles.title}>
+      <p style={theme} className={styles.title}>
         {title}
       </p>
     </>

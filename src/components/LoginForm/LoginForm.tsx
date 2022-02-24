@@ -7,12 +7,10 @@ import { Context } from '../../App';
 import { useContext } from 'react';
 
 export const LoginForm = () => {
-  const { darkTheme } = useContext(Context);
-  const { lightTheme } = useContext(Context);
-  const { isDark } = useContext(Context);
+  const { theme } = useContext(Context);
 
   return (
-    <div style={isDark ? darkTheme : lightTheme}>
+    <div style={theme}>
       <div className={styles.container}>
         <div className={styles.titleForm}>
           <TitleForm />
@@ -21,7 +19,7 @@ export const LoginForm = () => {
           <Button onClick={() => {}} text={'Login'} />
           <div className={styles.loginForm_text}>
             <p>If you have account, you can </p>
-            <a style={isDark ? darkTheme : lightTheme} href='#'>
+            <a style={theme} href='#'>
               login
             </a>
           </div>

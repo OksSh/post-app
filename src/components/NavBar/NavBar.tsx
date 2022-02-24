@@ -10,12 +10,10 @@ interface IProps {
 
 export const NavBar = ({ closeNavBar }: IProps) => {
   const { changeIsDark } = useContext(Context);
-  const { darkTheme } = useContext(Context);
-  const { lightTheme } = useContext(Context);
   const { isDark } = useContext(Context);
 
   return (
-    <div style={!isDark ? darkTheme : lightTheme} className={styles.navBar}>
+    <div className={isDark ? styles.navBar_dark : styles.navBar}>
       <div className={styles.container}>
         <div className={styles.navBar_content}>
           <div className={styles.navBar_button} onClick={closeNavBar}>
@@ -25,8 +23,11 @@ export const NavBar = ({ closeNavBar }: IProps) => {
             <div className={styles.navBar_link_indent}>
               <NavLink
                 exact
-                style={!isDark ? darkTheme : lightTheme}
-                className={styles.navBar_link_style}
+                className={
+                  isDark
+                    ? styles.navBar_link_darkStyle
+                    : styles.navBar_link_style
+                }
                 activeClassName={styles.activeLink}
                 to='/login'
               >
@@ -36,8 +37,11 @@ export const NavBar = ({ closeNavBar }: IProps) => {
             <div>
               <NavLink
                 exact
-                style={!isDark ? darkTheme : lightTheme}
-                className={styles.navBar_link_style}
+                className={
+                  isDark
+                    ? styles.navBar_link_darkStyle
+                    : styles.navBar_link_style
+                }
                 activeClassName={styles.activeLink}
                 to='/registration'
               >

@@ -16,8 +16,7 @@ const lightTheme: { background: string; color: string } = {
 export const Context = createContext({
   isDark: false,
   changeIsDark: () => {},
-  darkTheme: {},
-  lightTheme: {},
+  theme: {},
 });
 
 function App() {
@@ -33,8 +32,7 @@ function App() {
         value={{
           isDark,
           changeIsDark,
-          darkTheme,
-          lightTheme,
+          theme: isDark ? darkTheme : lightTheme,
         }}
       >
         <div className='App'>

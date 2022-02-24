@@ -4,8 +4,6 @@ import { Context } from '../../App';
 import { useContext } from 'react';
 
 export const TitleForm = () => {
-  const { darkTheme } = useContext(Context);
-  const { lightTheme } = useContext(Context);
   const { isDark } = useContext(Context);
 
   return (
@@ -14,7 +12,9 @@ export const TitleForm = () => {
         <NavLink
           exact
           activeClassName={styles.activeLink}
-          className={styles.titleForm_item}
+          className={
+            isDark ? styles.titleForm_item_dark : styles.titleForm_item
+          }
           to='/login'
         >
           Login
@@ -25,7 +25,9 @@ export const TitleForm = () => {
         <NavLink
           exact
           activeClassName={styles.activeLink}
-          className={styles.titleForm_item}
+          className={
+            isDark ? styles.titleForm_item_dark : styles.titleForm_item
+          }
           to='/registration'
         >
           Registration

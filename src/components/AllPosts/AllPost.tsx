@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 import { PostCard } from '../PostCard/PostCard';
-import { IPostProps } from '../PostCard/PostCard';
 import styles from '../AllPosts/AllPost.module.css';
 import { Button } from '../Button/Button';
 import { Title } from '../Title/Title';
@@ -9,42 +8,27 @@ import { Context } from '../../App';
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../../redux/store';
-import { addAllPosts, getPosts } from '../../redux/actions/actions';
+import { fetchPosts } from '../../redux/actions/actions';
+import { IPostState } from '../../redux/reducers/postsReducer';
 
 export const AllPost = () => {
-  const [offset, setOffset] = useState<number>(0);
-  const { darkTheme } = useContext(Context);
-  const { lightTheme } = useContext(Context);
-  const { isDark } = useContext(Context);
-  const posts = useSelector((state: IState) => state.reducerPosts.posts);
-  const allPosts = useSelector(
-    (state: IState) => state.reducerAllPosts.allPosts
-  );
+  const { theme } = useContext(Context);
+  const posts = useSelector((state: IState) => state.postsReducer.posts);
   const dispatch = useDispatch();
   const LIMIT = 6;
+  const [offset, setOffset] = useState<number>(0);
 
   useEffect(() => {
-    const getAllPosts = fetch(
-      `https://studapi.teachmeskills.by/blog/posts/?format=json&limit=${Number.MAX_SAFE_INTEGER}`
-    )
-      .then((response) => response.json())
-      .then((data) => dispatch(getPosts(data.results)));
-  }, []);
-
-  useEffect(() => {
-    const getAllPosts = fetch(
-      `https://studapi.teachmeskills.by/blog/posts/?format=json&limit=${LIMIT}&offset=${offset}`
-    )
-      .then((response) => response.json())
-      .then((data) => dispatch(addAllPosts(data.results)));
+    //   `https://studapi.teachmeskills.by/blog/posts/?format=json&limit=${LIMIT}&offset=${offset}`
+    dispatch(fetchPosts(LIMIT, offset));
   }, [offset]);
 
   const loadMore = useCallback(() => {
-    setOffset(allPosts.length);
-  }, [allPosts]);
+    setOffset(posts.length);
+  }, [posts]);
 
   return (
-    <div style={isDark ? darkTheme : lightTheme}>
+    <div  style={theme}>
       <div className={styles.container}>
         <div className={styles.allPost}>
           <div className={styles.allPost_title}>
@@ -54,7 +38,7 @@ export const AllPost = () => {
             </div>
           </div>
           <div className={styles.allPost_posts}>
-            {allPosts.map((item: IPostProps) => {
+            {posts.map((item: IPostState) => {
               return (
                 <PostCard
                   image={item.image}
@@ -68,9 +52,7 @@ export const AllPost = () => {
             })}
           </div>
         </div>
-        {allPosts.length < posts.length ? (
-          <Button text={'Show more'} onClick={loadMore} />
-        ) : null}
+        <Button text={'Show more'} onClick={loadMore} />
       </div>
     </div>
   );

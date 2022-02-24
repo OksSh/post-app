@@ -6,8 +6,7 @@ import { useContext } from 'react';
 
 export const Header = () => {
   const [navBar, setNavBar] = useState<boolean>(false);
-  const { darkTheme } = useContext(Context);
-  const { lightTheme } = useContext(Context);
+  const { theme } = useContext(Context);
   const { isDark } = useContext(Context);
 
   const onClick = () => {
@@ -19,7 +18,7 @@ export const Header = () => {
   };
 
   return (
-    <nav style={isDark ? darkTheme : lightTheme} className={styles.header}>
+    <nav style={theme} className={styles.header}>
       <div className={styles.container}>
         <div>
           <img

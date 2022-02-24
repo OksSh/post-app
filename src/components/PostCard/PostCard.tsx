@@ -1,21 +1,10 @@
 import styles from '../PostCard/PostCard.module.css';
 import { useHistory } from 'react-router-dom';
 import { Context } from '../../App';
-import { useContext } from 'react';
+import { IPostState } from '../../redux/reducers/postsReducer';
 
-export interface IPostProps {
-  image: string;
-  title: string;
-  text: string;
-  date: string;
-  id: string;
-}
-
-export const PostCard = ({ image, title, text, date, id }: IPostProps) => {
+export const PostCard = ({ image, title, text, date, id }: IPostState) => {
   const history = useHistory();
-  const { darkTheme } = useContext(Context);
-  const { lightTheme } = useContext(Context);
-  const { isDark } = useContext(Context);
 
   return (
     <div
@@ -23,7 +12,7 @@ export const PostCard = ({ image, title, text, date, id }: IPostProps) => {
         history.push('/post/' + id);
       }}
       className={styles.postCard}
-      style={!isDark ? lightTheme : lightTheme}
+      style={{ backgroundColor: '#ffffff' }}
     >
       <img
         className={styles.postCard_image}

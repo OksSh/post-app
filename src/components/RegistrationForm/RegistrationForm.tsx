@@ -7,12 +7,11 @@ import { Context } from '../../App';
 import { useContext } from 'react';
 
 export const RegistrationForm = () => {
-  const { darkTheme } = useContext(Context);
-  const { lightTheme } = useContext(Context);
+  const { theme } = useContext(Context);
   const { isDark } = useContext(Context);
 
   return (
-    <div style={isDark ? darkTheme : lightTheme}>
+    <div style={theme}>
       <div className={styles.container}>
         <div className={styles.registrationForm}>
           <TitleForm />
@@ -23,7 +22,7 @@ export const RegistrationForm = () => {
           <Button onClick={() => {}} text={'Login'} />
           <div className={styles.registrationForm_text}>
             <p>Forgot your password?</p>
-            <a style={isDark ? darkTheme : lightTheme} href='#'>
+            <a style={theme} href='#'>
               Reset password
             </a>
           </div>

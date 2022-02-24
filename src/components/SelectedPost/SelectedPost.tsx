@@ -1,61 +1,53 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styles from '../SelectedPost/SelectedPost.module.css';
-import { IPostProps } from '../PostCard/PostCard';
 import { AddButton } from '../AddButton/AddButton';
 import { Title } from '../Title/Title';
 import { Context } from '../../App';
 import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IState } from '../../redux/store';
+import { deletePost, fetchPost } from '../../redux/actions/actions';
 
 export const SelectedPost = () => {
-  const params: any = useParams();
-  const [cardInfo, setCardInfo] = useState<IPostProps>();
   const history = useHistory();
-  const { darkTheme } = useContext(Context);
-  const { lightTheme } = useContext(Context);
-  const { isDark } = useContext(Context);
-
-  const getInfo = async () => {
-    const response = await fetch(
-      'https://studapi.teachmeskills.by/blog/posts/' + params.id
-    );
-    const data = await response.json();
-    setCardInfo(data);
-  };
+  const { theme } = useContext(Context);
+  const post = useSelector((state: IState) => state.postsReducer.post);
+  const dispatch = useDispatch();
+  const params: any = useParams();
 
   useEffect(() => {
-    getInfo();
+    dispatch(fetchPost(params.id));
+
+    return () => {
+      dispatch(deletePost());
+    };
   }, []);
 
-  return cardInfo ? (
-    <div style={isDark ? darkTheme : lightTheme}>
+  return post ? (
+    <div className={styles.selectedPost} style={theme}>
       <div className={styles.container}>
         <div className={styles.selectedPost_title}>
           <Title title='Selected post' />
           <div className={styles.selectedPost_addButton}>
-            <AddButton
-              text='Back'
-              onClick={() => {
-                history.goBack();
-              }}
-            />
+            <AddButton text='Back' onClick={() => history.goBack()} />
           </div>
         </div>
         <div
-          style={isDark ? lightTheme : lightTheme}
-          className={styles.selectedPost}
+          style={{ backgroundColor: '#ffffff' }}
+          className={styles.selectedPost_item}
         >
           <img
             className={styles.selectedPost_image}
-            src={
-              cardInfo.image ? `${cardInfo.image}` : `${'img/blindImage.png'}`
-            }
+            src={post.image ? `${post.image}` : `${'img/blindImage.png'}`}
           />
-          <h2 className={styles.selectedPost_postTitle}>{cardInfo.title}</h2>
-          <p className={styles.selectedPost_text}>{cardInfo.text}</p>
-          <p className={styles.selectedPost_date}>{cardInfo.date}</p>
+          <h2 className={styles.selectedPost_postTitle}>{post.title}</h2>
+          <p className={styles.selectedPost_text}>{post.text}</p>
+          <p className={styles.selectedPost_date}>{post.date}</p>
         </div>
       </div>
     </div>
-  ) : null;
+  ) : (
+    <div>Wait...</div>
+  );
 };

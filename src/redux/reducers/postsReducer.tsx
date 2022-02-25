@@ -19,7 +19,7 @@ const defaultState: IPostsState = {
 
 export const postsReducer = (state = defaultState, action: any) => {
   if (action.type === ACTIONS.ADD_POSTS) {
-    return { ...state, posts: state.posts.concat(action.posts) };
+    return { ...state, posts: action.posts };
   }
 
   if (action.type === ACTIONS.SELECTED_POST) {

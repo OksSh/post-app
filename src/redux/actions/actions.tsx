@@ -34,3 +34,13 @@ export function fetchPost(id: string) {
 export const deletePost = () => {
   return { type: ACTIONS.DELETE_POST };
 };
+
+export const searchPosts = (search: string) => {
+  return async (dispatch: Dispatch) => {
+    const response = await fetch(
+      `https://studapi.teachmeskills.by/blog/posts/?search=${search}&limit=100`
+    );
+    const data = await response.json();
+    dispatch(addPosts(data.results));
+  };
+};

@@ -1,10 +1,20 @@
+import { ChangeEventHandler, KeyboardEventHandler } from 'react';
 import styles from '../Input/Input.module.css';
 interface IPropsInput {
   type: string;
   name: string;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
 }
 
-export const Input = ({ type, name }: IPropsInput) => {
+export const Input = ({
+  type,
+  name,
+  value,
+  onChange,
+  onKeyDown,
+}: IPropsInput) => {
   return (
     <div className={styles.form}>
       <label className={styles.form_label} htmlFor={`for${name}`}>
@@ -15,6 +25,9 @@ export const Input = ({ type, name }: IPropsInput) => {
         className={styles.form_input}
         type={type}
         name={name}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        value={value}
       ></input>
     </div>
   );

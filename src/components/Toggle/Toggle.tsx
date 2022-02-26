@@ -1,6 +1,6 @@
 import styles from '../Toggle/Toggle.module.css';
 import { Context } from '../../App';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 interface IToggleProps {
   onClick: () => void;

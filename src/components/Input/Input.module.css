@@ -30,3 +30,13 @@
   color: #254050;
   margin-bottom: 14px;
 }
+
+.error {
+  border-color: red;
+}
+
+.errorTitle {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 372px;
+}

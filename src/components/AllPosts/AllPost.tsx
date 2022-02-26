@@ -7,7 +7,7 @@ import { AddButton } from '../AddButton/AddButton';
 import { Context } from '../../App';
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IState } from '../../redux/store';
+import { IState, store } from '../../redux/store';
 import { fetchPosts, searchPosts } from '../../redux/actions/actions';
 import { IPostState } from '../../redux/reducers/postsReducer';
 import { Input } from '../Input/Input';
@@ -20,20 +20,41 @@ export const AllPost = () => {
   const [offset, setOffset] = useState<number>(0);
   const [search, setSearch] = useState<string>('');
 
+  function debounce(fun: (text: string) => void, ms: number) {
+    let isCooldown = false;
+    return function (searchText: string) {
+      if (isCooldown) {
+        return;
+      }
+
+      fun(searchText);
+      isCooldown = true;
+
+      setTimeout(() => {
+        isCooldown = false;
+      }, ms);
+    };
+  }
+
+  const delayedSearch = debounce(
+    (text: string) => dispatch(searchPosts(text)),
+    1000
+  );
+
   useEffect(() => {
     //   `https://studapi.teachmeskills.by/blog/posts/?format=json&limit=${LIMIT}&offset=${offset}`
     dispatch(fetchPosts(LIMIT, offset));
   }, [offset]);
 
+  useEffect(() => {
+    delayedSearch(search);
+  }, [search]);
+
   const onChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setSearch(event.target.value);
-      console.log(search);
-
-      if (event.target) {
-      }
     },
-    [posts]
+    [search]
   );
 
   const loadMore = useCallback(() => {
@@ -58,7 +79,7 @@ export const AllPost = () => {
             <div className={styles.allPost_addButton}>
               <AddButton text='+ Add' onClick={() => {}} />
             </div>
-            <div>
+            <div style={{ marginLeft: 'auto', color: '#016EFC' }}>
               <Input
                 value={search}
                 onChange={onChange}

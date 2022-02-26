@@ -1,0 +1,38 @@
+.titleForm {
+  margin-bottom: 53px;
+  margin-top: 61px;
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  width: 2px;
+  height: 55px;
+  background: #254050;
+  margin: 0 10px;
+}
+
+.titleForm_item {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 45px;
+  line-height: 145.2%;
+  letter-spacing: 0.03em;
+  color: #016efc;
+  text-decoration: none;
+}
+
+.titleForm_item_dark {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 45px;
+  line-height: 145.2%;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.activeLink {
+  color: #75869b;
+  cursor: default;
+}

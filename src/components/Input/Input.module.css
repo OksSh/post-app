@@ -1,0 +1,42 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 41px;
+}
+
+.form_input {
+  width: 372px;
+  height: 63px;
+  background: #f5f9ff;
+  border: 4px solid #82a9ff;
+  border-radius: 200px;
+  padding-left: 15px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 29px;
+  letter-spacing: 0.05em;
+  color: #254050;
+}
+
+.form_label {
+  width: 166px;
+  height: 29px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 29px;
+  letter-spacing: 0.05em;
+  color: #254050;
+  margin-bottom: 14px;
+}
+
+.error {
+  border-color: red;
+}
+
+.errorTitle {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 372px;
+}

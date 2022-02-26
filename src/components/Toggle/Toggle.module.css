@@ -1,0 +1,63 @@
+.toggle {
+  cursor: pointer;
+}
+
+.toggle_wrapper {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  border-radius: 30px;
+  border: 2px solid #016efc;
+  background-color: #ffffff;
+}
+
+.toggle_switch {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #016efc;
+  top: 4px;
+  left: 4px;
+  animation: toggle 0.5s ease 1 forwards;
+}
+
+.toggle_wrapper_dark {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  border-radius: 30px;
+  border: 2px solid #016efc;
+  background-color: #016efc;
+}
+
+.toggle_switch_dark {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  top: 4px;
+  left: 4px;
+  animation: toggleDark 0.5s ease 1 forwards;
+}
+
+@keyframes toggleDark {
+  0% {
+    left: 4px;
+  }
+  100% {
+    left: 32px;
+    background-color: #ffffff;
+  }
+}
+
+@keyframes toggle {
+  0% {
+    left: 32px;
+  }
+  100% {
+    left: 4px;
+    background-color: #016efc;
+  }
+}

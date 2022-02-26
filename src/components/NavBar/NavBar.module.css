@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1105px;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+}
+
+.navBar {
+  background-color: #016efc;
+  padding: 58px 0 71px 0;
+}
+
+.navBar_dark {
+  background-color: #ffffff;
+  padding: 58px 0 71px 0;
+}
+
+.activeNavBar {
+  top: 0;
+}
+
+.navBar_content {
+  display: flex;
+}
+
+.navBar_link {
+  margin-left: 82px;
+  margin-top: 77px;
+}
+
+.navBar_link_indent {
+  margin-bottom: 22px;
+}
+
+.navBar_link_style {
+  text-decoration: none;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.navBar_link_darkStyle {
+  text-decoration: none;
+  cursor: pointer;
+  color: #016efc;
+}
+
+.activeLink {
+  color: orange;
+}
+
+.navBar_button img {
+  cursor: pointer;
+}
